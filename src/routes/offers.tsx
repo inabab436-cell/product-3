@@ -6,6 +6,7 @@ import {
   Clock,
   Hourglass,
   Loader2,
+  Pencil,
   Plus,
   Repeat,
   Trash2,
@@ -764,18 +765,13 @@ function OffersPage() {
                       {o.beneficiaries.map((b) =>
                         b.conversation_id ? (
                           <li key={b.id}>
-                            <div
-                              className="block rounded-lg border border-border/60 px-3 py-2 text-xs hover:bg-muted/60"
-                            >
+                            <div className="of-row block">
                               استفاد عميل بالخصم الآن، وقيمة الطلب الخاص به{" "}
                               {b.order_total ?? 0}
                             </div>
                           </li>
                         ) : (
-                          <li
-                            key={b.id}
-                            className="rounded-lg border border-border/60 px-3 py-2 text-xs"
-                          >
+                          <li key={b.id} className="of-row">
                             استفاد عميل بالخصم الآن، وقيمة الطلب الخاص به {b.order_total ?? 0}
                           </li>
                         ),
@@ -804,17 +800,10 @@ function OffersPage() {
                         );
                         return b.conversation_id ? (
                           <li key={b.order_id}>
-                            <div
-                              className="block rounded-lg border border-dashed border-border/60 px-3 py-2 text-xs hover:bg-muted/60"
-                            >
-                              {body}
-                            </div>
+                            <div className="of-row of-row-dashed block">{body}</div>
                           </li>
                         ) : (
-                          <li
-                            key={b.order_id}
-                            className="rounded-lg border border-dashed border-border/60 px-3 py-2 text-xs"
-                          >
+                          <li key={b.order_id} className="of-row of-row-dashed">
                             {body}
                           </li>
                         );
@@ -827,6 +816,7 @@ function OffersPage() {
           </ul>
         )}
       </section>
+      </div>
     </PageShell>
   );
 }
