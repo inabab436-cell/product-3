@@ -451,6 +451,181 @@
   }
 }
 
+/* ============================================================
+   OFFERS — calm geometric teal redesign (direction "لوحة تركواز
+   هندسية"). Scoped under .offers-teal inside the dashboard; nothing
+   here leaks to the wider hub theme.
+   ============================================================ */
+.offers-teal {
+  --of-deep: #0f766e;
+  --of-teal: #14b8a6;
+  --of-soft: #ccfbf1;
+  --of-tint: #f0fdfa;
+  --of-slate: #64748b;
+  --of-rose: #fb7185;
+  --of-rose-soft: #fff1f2;
+  font-family: "IBM Plex Sans Arabic", "Tajawal", "Cairo", sans-serif;
+}
+
+.offers-teal .of-nums {
+  font-family: "Space Grotesk", "DM Sans", monospace;
+  letter-spacing: 0.04em;
+}
+
+.offers-teal .of-panel {
+  border: 1px solid var(--of-soft);
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgb(15 118 110 / 0.05);
+}
+
+.offers-teal .of-card {
+  border: 1px solid var(--of-soft);
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgb(15 118 110 / 0.05);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.offers-teal .of-card:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--of-teal) 35%, var(--of-soft));
+  box-shadow: 0 8px 24px -16px rgb(15 118 110 / 0.25);
+}
+
+.offers-teal .of-card.is-muted {
+  opacity: 0.85;
+}
+
+.offers-teal .of-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.offers-teal .of-badge-live {
+  background-color: var(--of-soft);
+  color: var(--of-deep);
+}
+
+.offers-teal .of-badge-sched {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.offers-teal .of-badge-ended {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+}
+
+.offers-teal .of-title {
+  color: var(--of-deep);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.offers-teal .of-discount {
+  color: var(--of-teal);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.offers-teal .of-meta {
+  color: var(--of-slate);
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+.offers-teal .of-stat {
+  flex: 1 1 0;
+  min-width: 0;
+  background-color: var(--of-tint);
+  border: 1px solid var(--of-soft);
+  border-radius: 0.75rem;
+  padding: 0.625rem;
+  text-align: center;
+}
+
+.offers-teal .of-stat-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 0.6875rem;
+  color: var(--of-slate);
+  margin-bottom: 0.15rem;
+}
+
+.offers-teal .of-stat-value {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--of-deep);
+}
+
+.offers-teal .of-stat-sub {
+  margin-top: 0.15rem;
+  font-size: 0.6875rem;
+  color: var(--of-slate);
+}
+
+.offers-teal .of-icon-btn {
+  display: inline-grid;
+  place-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--of-teal);
+  transition: background-color 150ms ease;
+}
+
+.offers-teal .of-icon-btn:hover {
+  background-color: var(--of-tint);
+}
+
+.offers-teal .of-icon-btn-danger {
+  color: var(--of-rose);
+}
+
+.offers-teal .of-icon-btn-danger:hover {
+  background-color: var(--of-rose-soft);
+}
+
+.offers-teal .of-btn-new {
+  background-color: var(--of-teal);
+  color: #fff;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 6px 16px -8px rgb(20 184 166 / 0.6);
+  transition: transform 120ms ease, background-color 150ms ease;
+}
+
+.offers-teal .of-btn-new:hover {
+  background-color: var(--of-deep);
+}
+
+.offers-teal .of-btn-new:active {
+  transform: scale(0.97);
+}
+
+.offers-teal .of-row {
+  border: 1px solid var(--of-soft);
+  border-radius: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  background-color: #fff;
+}
+
+.offers-teal .of-row-dashed {
+  border-style: dashed;
+  background-color: var(--of-tint);
+}
+
 /* CUPAI early-access page — light, calm extension of the main brand. */
 .join-page {
   --background: oklch(0.985 0.006 242);
