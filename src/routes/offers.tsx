@@ -197,12 +197,12 @@ function LiveTimeScreen({ offer, now }: { offer: OfferDTO; now: number }) {
   }
 
   return (
-    <div className="flex-1 rounded-xl border border-border/60 bg-muted/40 p-3">
-      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+    <div className="of-stat">
+      <div className="of-stat-label">
         <Clock className="h-3.5 w-3.5" />
         {label}
       </div>
-      <div dir="ltr" className="mt-1 text-lg font-semibold tabular-nums">
+      <div dir="ltr" className="of-stat-value of-nums tabular-nums">
         {body}
       </div>
     </div>
@@ -213,12 +213,12 @@ function LiveTimeScreen({ offer, now }: { offer: OfferDTO; now: number }) {
 function LiveCustomersScreen({ offer }: { offer: OfferDTO }) {
   const count = offer.beneficiaries.length || offer.redemption_count;
   return (
-    <div className="flex-1 rounded-xl border border-border/60 bg-muted/40 p-3">
-      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+    <div className="of-stat">
+      <div className="of-stat-label">
         <Users className="h-3.5 w-3.5" />
         مستفيدون مؤكدون
       </div>
-      <div dir="ltr" className="mt-1 text-lg font-semibold tabular-nums">
+      <div dir="ltr" className="of-stat-value of-nums tabular-nums">
         {count}
         {offer.max_redemptions ? ` / ${offer.max_redemptions}` : ""}
       </div>
@@ -237,15 +237,15 @@ function PendingCustomersScreen({ offer }: { offer: OfferDTO }) {
       ? Math.max(0, offer.max_redemptions - confirmed - offer.pending_beneficiaries)
       : null;
   return (
-    <div className="flex-1 rounded-xl border border-border/60 bg-muted/40 p-3">
-      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+    <div className="of-stat">
+      <div className="of-stat-label">
         <Hourglass className="h-3.5 w-3.5" />
         بانتظار تأكيد الدفع
       </div>
-      <div dir="ltr" className="mt-1 text-lg font-semibold tabular-nums">
+      <div dir="ltr" className="of-stat-value of-nums tabular-nums">
         {offer.pending_beneficiaries}
       </div>
-      <div className="mt-0.5 text-[11px] text-muted-foreground">
+      <div className="of-stat-sub">
         {remaining == null ? "العدد غير محدود" : `المتبقي من العدد: ${remaining}`}
       </div>
     </div>
@@ -259,16 +259,16 @@ function PendingCustomersScreen({ offer }: { offer: OfferDTO }) {
 function LiveUsesScreen({ offer }: { offer: OfferDTO }) {
   if (offer.usage_limit_type === "once_per_customer") return null;
   return (
-    <div className="flex-1 rounded-xl border border-border/60 bg-muted/40 p-3">
-      <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+    <div className="of-stat">
+      <div className="of-stat-label">
         <Repeat className="h-3.5 w-3.5" />
         مرات الاستخدام
       </div>
-      <div dir="ltr" className="mt-1 text-lg font-semibold tabular-nums">
+      <div dir="ltr" className="of-stat-value of-nums tabular-nums">
         {offer.use_count + offer.pending_uses}
         {offer.max_redemptions ? ` / ${offer.max_redemptions}` : ""}
       </div>
-      <div className="mt-0.5 text-[11px] text-muted-foreground">
+      <div className="of-stat-sub">
         {`مؤكد ${offer.use_count} · غير مؤكد ${offer.pending_uses}`}
       </div>
     </div>
