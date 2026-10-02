@@ -390,6 +390,7 @@ function OffersPage() {
       icon={<BadgePercent className="h-5 w-5" />}
       actions={
         <Button
+          className="of-btn-new border-0"
           onClick={() => {
             setForm(emptyForm());
             setOpen((v) => !v);
@@ -400,9 +401,9 @@ function OffersPage() {
         </Button>
       }
     >
-
+      <div className="offers-teal space-y-4">
       {open && (
-        <section className="space-y-4 rounded-2xl border border-border/60 bg-background/80 p-4 shadow-card backdrop-blur">
+        <section className="of-panel space-y-4 p-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label>اسم العرض</Label>
@@ -676,59 +677,68 @@ function OffersPage() {
         </section>
       )}
 
-      <section className="rounded-2xl border border-border/60 bg-background/80 shadow-card backdrop-blur">
+      <section>
         {offers.isLoading ? (
-          <div className="flex items-center gap-2 p-6 text-sm text-muted-foreground">
+          <div className="of-panel flex items-center gap-2 p-6 text-sm text-muted-foreground">
             <Loader2 className="h-4 w-4 animate-spin" />
             جاري التحميل…
           </div>
         ) : (offers.data ?? []).length === 0 ? (
-          <p className="p-6 text-sm text-muted-foreground">
+          <p className="of-panel p-6 text-sm text-muted-foreground">
             لا توجد عروض حتى الآن. أضف عرضاً على منتج محدد أو على كل المنتجات.
           </p>
         ) : (
-          <ul className="divide-y divide-border/60">
+          <ul className="space-y-4">
             {(offers.data ?? []).map((o) => (
-              <li key={o.id} className="space-y-3 p-4">
+              <li key={o.id} className={`of-card space-y-3 ${o.state !== "live" ? "is-muted" : ""}`}>
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm font-semibold">{o.title}</span>
                       <span
-                        className={`rounded-full px-2 py-0.5 text-[11px] ${
+                        className={`of-badge ${
                           o.state === "live"
-                            ? "bg-primary/10 text-primary"
-                            : "bg-muted text-muted-foreground"
+                            ? "of-badge-live"
+                            : o.state === "scheduled"
+                              ? "of-badge-sched"
+                              : "of-badge-ended"
                         }`}
                       >
                         {STATE_LABEL[o.state]}
                       </span>
+                      <span className="of-title">{o.title}</span>
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      {o.scope === "all" ? "كل المنتجات" : o.product_name ?? "منتج محذوف"} ·{" "}
+                    <div className="of-discount">
                       {o.discount_type === "percent"
                         ? `خصم ${o.discount_value}%`
                         : `خصم ${o.discount_value}`}
+                    </div>
+                    <div className="of-meta">
+                      {o.scope === "all" ? "كل المنتجات" : o.product_name ?? "منتج محذوف"}
                       {o.ends_at
                         ? ` · ينتهي ${new Date(o.ends_at).toLocaleString("ar-EG")}`
                         : " · بدون نهاية"}
-                    </div>
-                    <div className="text-[11px] text-muted-foreground">
+                      {" · "}
                       {o.notify_enabled ? "الرسالة التلقائية مفعّلة" : "الرسالة التلقائية معطّلة"}
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Button variant="ghost" size="sm" onClick={() => edit(o)}>
-                      تعديل
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
+                  <div className="flex gap-1">
+                    <button
+                      type="button"
+                      className="of-icon-btn"
+                      aria-label="تعديل العرض"
+                      onClick={() => edit(o)}
+                    >
+                      <Pencil className="h-5 w-5" />
+                    </button>
+                    <button
+                      type="button"
+                      className="of-icon-btn of-icon-btn-danger"
+                      aria-label="حذف العرض"
                       onClick={() => remove.mutate(o.id)}
                       disabled={remove.isPending}
                     >
-                      <Trash2 className="h-4 w-4 text-destructive" />
-                    </Button>
+                      <Trash2 className="h-5 w-5" />
+                    </button>
                   </div>
                 </div>
 
